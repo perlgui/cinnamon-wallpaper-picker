@@ -79,7 +79,7 @@ Or find Wallpaper Picker in the application menu under Preferences
 
 ## Configuration
 
-There are no configuration files. To change defaults, edit the commented-out constructor arguments near the bottom of `wallpaper-picker.pl`:
+There are no configuration files. To change defaults, adapt the constructor arguments near the bottom of `wallpaper-picker.pl`:
 
 ```perl
 my $picker = WallpaperPicker->new(
