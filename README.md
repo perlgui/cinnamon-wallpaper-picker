@@ -2,6 +2,11 @@
 
 A lightweight, keyboard-friendly wallpaper browser for Linux Mint Cinnamon desktop. It presents all images from your Pictures folder as a full-width thumbnail strip that slides in over the centre of the screen, letting you browse and apply wallpapers without opening a file manager or diving into system settings.
 
+
+
+<img width="3840" height="2160" alt="1" src="https://github.com/user-attachments/assets/e1939883-f112-4e5c-9cad-06b597111d6e" />
+
+
 ---
 
 ## Features
