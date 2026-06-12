@@ -91,7 +91,7 @@ my $picker = WallpaperPicker->new(
 );
 ```
 
-Adjust any line you want to change, then save the file. No reinstall is needed — the script runs directly from `~/.local/bin`.
+Adjust any line you want to change, then save the file. No reinstall is needed, the script runs directly from `~/.local/bin`.
 
 The thumbnail cache lives at:
 
