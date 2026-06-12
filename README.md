@@ -61,13 +61,19 @@ The installer will:
 
 ## Usage
 
-Launch from the terminal:
+Create a custom shortcut in Cinnamon System Settings --> Keyboard --> Shortcuts --> Custom Shortcuts --> Add custom shortcut
+
+<img width="1600" height="1288" alt="custom shortcut1" src="https://github.com/user-attachments/assets/c5dafa43-257e-43f0-8b45-827d45656928" />
+
+
+Or launch it from the terminal:
 
 ```bash
 wallpaper-picker
 ```
 
 Or find Wallpaper Picker in the application menu under Preferences
+
 
 ### Controls
 
