@@ -1,4 +1,5 @@
 #!/usr/bin/env perl
+use strict;
 use warnings;
 
 our $VERSION = '1.0.0';
@@ -10,7 +11,6 @@ use Glib qw(TRUE FALSE);
 use File::Glob ':glob';
 use File::Path qw(make_path);
 use Digest::SHA qw(sha1_hex);
-use Scalar::Util qw(looks_like_number);
 
 use constant {
     DEFAULT_THUMB_HEIGHT    => 300,
@@ -56,6 +56,8 @@ use constant {
     OPACITY_MAX             => 100,
     OPACITY_MIN             => 0,
     LARGE_DISTANCE          => 1e9,
+    ROUND_HALF              => 0.5,
+    LAST_INDEX_OFFSET       => -1,
 };
 
 has pictures_dir => (
@@ -96,7 +98,7 @@ has fade_interval_ms => (
 has cache_dir => (
     is      => 'ro',
     default => sub {
-        "$ENV{HOME}/.local/share/perl-wallpaper-picker/thumbnails"
+        "$ENV{HOME}/.local/share/perl-wallpaper-picker/thumbnails";
     },
 );
 
@@ -362,8 +364,8 @@ sub _generate_and_cache {
     my $orig_h   = $orig->get_height;
     my $fill     = ($target_w / $orig_w) > ($target_h / $orig_h)
                  ? ($target_w / $orig_w) : ($target_h / $orig_h);
-    my $scaled_w = int($orig_w * $fill + 0.5);
-    my $scaled_h = int($orig_h * $fill + 0.5);
+    my $scaled_w = int($orig_w * $fill + ROUND_HALF);
+    my $scaled_h = int($orig_h * $fill + ROUND_HALF);
     my $scaled   = $orig->scale_simple($scaled_w, $scaled_h, 'bilinear');
     my $crop_x   = int(($scaled_w - $target_w) / 2);
     my $crop_y   = int(($scaled_h - $target_h) / 2);
@@ -636,9 +638,9 @@ sub _on_key {
 
     my %dispatch = (
         Gtk3::Gdk::KEY_Right,    sub { $self->_key_move(1)  },
-        Gtk3::Gdk::KEY_Left,     sub { $self->_key_move(-1) },
+        Gtk3::Gdk::KEY_Left,     sub { $self->_key_move(LAST_INDEX_OFFSET) },
         Gtk3::Gdk::KEY_Down,     sub { $self->_key_move(1)  },
-        Gtk3::Gdk::KEY_Up,       sub { $self->_key_move(-1) },
+        Gtk3::Gdk::KEY_Up,       sub { $self->_key_move(LAST_INDEX_OFFSET) },
         Gtk3::Gdk::KEY_Return,   sub { $self->_apply_wallpaper($images[$sel]) },
         Gtk3::Gdk::KEY_KP_Enter, sub { $self->_apply_wallpaper($images[$sel]) },
         Gtk3::Gdk::KEY_Escape,   sub { Gtk3->main_quit },
