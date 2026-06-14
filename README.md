@@ -30,7 +30,6 @@ A lightweight, keyboard-friendly wallpaper browser for Linux Mint Cinnamon deskt
   - `Gtk3`
   - `Glib`
   - `Digest::SHA`
-  - `Scalar::Util`
   - `File::Path`, `File::Glob` (Perl core - no separate install needed)
 
 ---
